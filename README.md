@@ -12,3 +12,9 @@ A spherical [light fixture](https://www.amazon.com/gp/product/B00EMBZISM/).
 Stock Orb, Stock Market Version - Shareable: Tracks changes in stock market data.
 
 Stock Orb, Crypto Market Version - Shareable: Tracks changes in crpyto data.
+
+
+<p align="center"> 
+  Visitor count<br>
+  <img src="https://profile-counter.glitch.me/NoahAdamSperling/count.svg" />
+</p>
