@@ -54,8 +54,7 @@ def get_btc_price():
     #     of the 1-hour interval for which the candle data is being retrieved.
     # So the full URL with parameters is retrieving the candle data for Bitcoin's price from Binance for a 
     # 1-hour interval that starts at yesterday's date at 5:00 PM and ends 1 hour later.
-    # Denominator for the daily percent change is reset every hour to be the value of the crypto asset 24 hours ago from
-    # that refresh.
+    # Denominator for the daily percent change is reset every hour to be the value of the crypto asset 24 hours ago from that refresh.
 def get_prev_btc_price():
     yesterday_5pm = int(time.time()) - ((60 * 60 * 24) + (60 * 60 * 7))
     url = f"https://finnhub.io/api/v1/crypto/candle?symbol=BINANCE:BTCUSDT&resolution=60&from={yesterday_5pm}&to={yesterday_5pm+60*60}&token={FINNHUB_API_KEY}"
