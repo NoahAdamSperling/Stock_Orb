@@ -9,9 +9,9 @@ A spherical [light fixture](https://www.amazon.com/gp/product/B00EMBZISM/).
 *Although the spherical light fixture is not needed for the light to work, it is helpful for giving the final product a more crystal ball kinda feel :crystal_ball:.*
 
 # Script Descriptions
-Stock Orb, Stock Market Version - Shareable: Tracks changes in stock market data.
+Stock Orb, Stock Market Version: Tracks changes in stock market data.
 
-Stock Orb, Crypto Market Version - Shareable: Tracks changes in crpyto data.
+Stock Orb, Crypto Market Version: Tracks changes in crpyto data.
 
 
 <p align="center"> 
