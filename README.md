@@ -1,5 +1,5 @@
 # The Stock Orb :chart_with_upwards_trend::crystal_ball:
-The Stock Orb is a Python script I made that utilizes a smart bulb to create a real-time visual indicator of percent changes in stock market data (i.e., a stock market lamp) relative to the prior day's closing price. This project uses a YeeLight brand smart bulb and the financial API Finnhub.
+The Stock Orb is a Python script that utilizes a smart bulb to create a real-time visual indicator of percent changes in stock market data (i.e., a stock market lamp) relative to the prior day's closing price. This project uses a YeeLight brand smart bulb and the financial API Finnhub.
 
 # Materials Needed
 A YeeLight brand [smart light](https://www.amazon.com/dp/B09B91X2XQ).
