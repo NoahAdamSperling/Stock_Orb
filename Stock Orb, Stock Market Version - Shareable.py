@@ -83,7 +83,8 @@ while True:
                     # Red color for percent changes less than or equal to -3
                     else:
                         bulb.set_rgb(255, 255, 255)
-                    # White color for everything else, generally will apply when change is zero from market being closed
+                    # White color for everything else, generally will apply when percent change is zero, which would occur when the 
+                    # numerator current price is the same as the denominator previous closing price.
                     
                     # Print current and previous closing stock prices with the current time
                     print(current_time, "Current price:", current_price)
