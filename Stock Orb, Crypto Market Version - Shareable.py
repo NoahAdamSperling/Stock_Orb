@@ -30,7 +30,8 @@ def change_color(percent_change):
         # Red color for percent changes less than or equal to -3
     else:
          bulb.set_rgb(255, 255, 255)
-
+        # White color for everything else, generally will apply when percent change is zero, which would occur when the 
+        # numerator current price is the same as the denominator previous closing price.
 
 # Define a function to get the current Bitcoin price from Binance using the Finnhub API
 # 'resolution=1&count=1' tells:
