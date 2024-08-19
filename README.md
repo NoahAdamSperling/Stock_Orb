@@ -12,6 +12,7 @@ A spherical [light fixture](https://www.amazon.com/gp/product/B00EMBZISM/).
 Stock Orb, Stock Market Version: Changes Smartlight color and patterns to reflect daily percent change in stock market data.
 
 Stock Orb, Crypto Market Version: Changes Smartlight color and patterns to reflect percent changes in crpyto market data.
+
 <sub>*For the Crypto Market Version, please note that given the limitations of data provided under the free-version of the Finnhub API, the percent changes displayed are compared to a base price that is equal to the price when the code is first ran, which then updates roughly 24 hours later to be the new price at that start time, just from the next day. This process was selected as access to historical trends of crypto data (captured in the Candles function  on Finnub) are a Premium function. Thus, this is a free work around to get the script ro run 24/7. If you are okay with the code running just during typical market hours, simply use the STOCK version of the code, and set it to a stock that tracks crpyto currencies such as "BTC-USD".*
 
 <p align="center"> 
