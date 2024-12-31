@@ -1,4 +1,11 @@
-#Stock Orb: STOCKS Pulsating Update - As of 19-Aug-2024#
+#Stock Orb: Improved Error Handling (19-Dec-2024)
+#(i.e., without creating a new new Bulb instance (bulb = Bulb(BULB_IP)) every time, which could be causing issues if the instance isn't being closed properly or too many connections are being made.
+
+# Turns on light, starting in brown as unused color from other color keys.
+#from yeelight import Bulb
+#bulb = Bulb("192.168.1.202")
+#bulb.turn_on()
+#bulb.set_rgb(205, 127, 50)
 
 # Import needed packages
 import datetime
@@ -42,6 +49,23 @@ def start_pulsating(bulb, r, g, b):
     transitions = [RGBTransition(r, g, b, duration=500), RGBTransition(0, 0, 0, duration=500)]
     flow = Flow(count=0, transitions=transitions)
     bulb.start_flow(flow)
+
+# Function to handle retry logic for the Yeelight bulb connection.
+# This function is called when a Yeelight Bulb Exception is encountered,
+# and it attempts to re-establish a connection to the bulb after an error.
+def handle_yeelight_error(bulb):
+    print("Yeelight Bulb Exception occurred. Retrying...")
+    # Print a message indicating that the Yeelight bulb encountered an error and the system will retry.
+    time.sleep(10)  # Adding a delay of 10 seconds before attempting to reconnect to avoid overwhelming the system.
+                    # In previous versions of the code, you would create a new Bulb instance (bulb = Bulb(BULB_IP)) every time, which could be causing issues if the instance isn't being closed properly or too many connections are being made.
+    try:
+        bulb.turn_off()       # Turn off the bulb before attempting to reconnect.
+        bulb = Bulb(BULB_IP)  # Create a new instance of the Bulb using the same IP address. This is essentially reconnecting to the bulb, without actually creating a new instance, which can 
+        bulb.turn_on()  # Ensure the bulb is on after reconnecting
+    except BulbException as be:
+        print("Failed to reconnect to Yeelight Bulb:", be)
+        time.sleep(5)
+    return bulb
 
 # Main loop
 while True:
@@ -134,14 +158,10 @@ while True:
                     #time.sleep uses seconds, so 2 checks every 2 seconds, 60 every 1 minute, 1800 every 30 minutes, 3600 every 1 hour                    
                     time.sleep(1800)
 
-#Except command connects to Try command to tell code to print that it encountered error, then restart the code from the Try-line after 30 seconds.                 
+#Except command connects to Try command to tell code to print that it encountered error, then restart the code from the Try-line after 5 seconds.                 
     except BulbException as be:
         print("Yeelight Bulb Exception:", be)
-        time.sleep(5)
-        bulb.set_rgb(0, 0, 255)
-        # Reconnect to the bulb by creating a new Bulb instance
-        bulb = Bulb(BULB_IP)
-        bulb.turn_off() # Turn off the bulb to reset its state
+        bulb = handle_yeelight_error(bulb)
 
     except Exception as e:
         print("Encountered error:", e)
