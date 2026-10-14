@@ -1,4 +1,4 @@
-# 🔮📈 Stock Orb 📈🔮
+# 📈🔮 Stock Orb 📈🔮
 
 The Stock Orb is a Python project that turns a Yeelight smart bulb into a real-time market indicator. The script checks market quotes through the Finnhub API and changes the bulb's color and animation to reflect the selected asset's price movement.
 
