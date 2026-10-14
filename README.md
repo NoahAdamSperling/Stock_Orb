@@ -32,17 +32,17 @@ The current scripts use these thresholds. The comparison is based on the script'
 
 | Price change | Bulb behavior |
 | --- | --- |
-| +2.5% or higher | 🟡/🟢 Rapidly alternates gold and green 🟡/🟢 |
-| Above +2.0% to below +2.5% | 🟡 Slowly pulses gold 🟡 |
-| Above +1.5% to +2.0% | 🟡 Solid gold 🟡 |
-| Above +1.0% to +1.5% | 🟢 Slowly pulses green 🟢 |
-| Above 0% to +1.0% | 🟢 Solid green 🟢 |
-| Exactly 0% | ⚪ Solid white ⚪ |
-| Below 0% to -1.0% | 🔴 Solid red 🔴 |
-| Below -1.0% to -1.5% | 🔴 Pulsing red 🔴 |
-| Below -1.5% to -2.0% | 🟣 Solid purple 🟣 |
-| Below -2.0% to -2.5% | 🟣 Slowly pulses purple 🟣 |
-| -2.5% or lower | 🟣/🔴Rapidly alternates purple and red 🟣/🔴 |
+| +2.5% or higher | 🟡/🟢 Rapidly Pulses Between Gold and Green 🟡/🟢 |
+| Above +2.0% to below +2.5% | 🟡 Slowly Pulses Gold 🟡 |
+| Above +1.5% to +2.0% | 🟡 Solid Gold 🟡 |
+| Above +1.0% to +1.5% | 🟢 Slowly Pulses Green 🟢 |
+| Above 0% to +1.0% | 🟢 Solid Green 🟢 |
+| Exactly 0% | ⚪ Solid White ⚪ |
+| Below 0% to -1.0% | 🔴 Solid Red 🔴 |
+| Below -1.0% to -1.5% | 🔴 Slowly Pulses Red 🔴 |
+| Below -1.5% to -2.0% | 🟣 Solid Purple 🟣 |
+| Below -2.0% to -2.5% | 🟣 Slowly Pulses purple 🟣 |
+| -2.5% or lower | 🟣/🔴Rapidly Pulses Between Purple and Red 🟣/🔴 |
 | Quote/API error | 🔵 Blue is used as an error indication in the scripts' error-handling paths 🔵 |
 
 Threshold boundaries follow the comparisons in the code. Because the conditions use a mixture of `>` and `>=`, exact boundary values can behave differently from ranges described informally in comments.
