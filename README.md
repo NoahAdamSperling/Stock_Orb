@@ -19,7 +19,7 @@ The project includes separate scripts for stock-market-hours monitoring and cryp
 
 ## What it does
 
-Stock Orb polls Finnhub for a quote, calculates a percentage change against a reference price, and translates that change into a color and, at larger moves, a pulsing pattern on a Yeelight smart bulb.
+Stock Orb queries Finnhub for a quote, calculates a percentage change against a reference price, and translates that change into a color and, at larger moves, a pulsing pattern on a Yeelight smart bulb.
 
 The repository's scripts are intended for two different use cases:
 
@@ -32,18 +32,18 @@ The current scripts use these thresholds. The comparison is based on the script'
 
 | Price change | Bulb behavior |
 | --- | --- |
-| +2.5% or higher | Rapidly alternates gold and green |
-| Above +2.0% to below +2.5% | Slowly pulses gold |
-| Above +1.5% to +2.0% | Solid gold |
-| Above +1.0% to +1.5% | Slowly pulses green |
-| Above 0% to +1.0% | Solid green |
-| Exactly 0% | Solid white |
-| Below 0% to -1.0% | Solid red |
-| Below -1.0% to -1.5% | Pulsing red |
-| Below -1.5% to -2.0% | Solid purple |
-| Below -2.0% to -2.5% | Slowly pulses purple |
-| -2.5% or lower | Rapidly alternates red and purple |
-| Quote/API error | Blue is used as an error indication in the scripts' error-handling paths |
+| +2.5% or higher | 🟡/🟢 Rapidly alternates gold and green 🟡/🟢 |
+| Above +2.0% to below +2.5% | 🟡 Slowly pulses gold 🟡 |
+| Above +1.5% to +2.0% | 🟡 Solid gold 🟡 |
+| Above +1.0% to +1.5% | 🟢 Slowly pulses green 🟢 |
+| Above 0% to +1.0% | 🟢 Solid green 🟢 |
+| Exactly 0% | ⚪ Solid white ⚪ |
+| Below 0% to -1.0% | 🔴 Solid red 🔴 |
+| Below -1.0% to -1.5% | 🔴 Pulsing red 🔴 |
+| Below -1.5% to -2.0% | 🟣 Solid purple 🟣 |
+| Below -2.0% to -2.5% | 🟣 Slowly pulses purple 🟣 |
+| -2.5% or lower | 🟣/🔴Rapidly alternates purple and red 🟣/🔴 |
+| Quote/API error | 🔵 Blue is used as an error indication in the scripts' error-handling paths 🔵 |
 
 Threshold boundaries follow the comparisons in the code. Because the conditions use a mixture of `>` and `>=`, exact boundary values can behave differently from ranges described informally in comments.
 
@@ -56,6 +56,8 @@ Threshold boundaries follow the comparisons in the code. Because the conditions 
 5. **Repeats.** The scripts poll approximately every three seconds during their active loops and print quote information or status messages to the terminal.
 6. **Attempts recovery.** Error-handling code prints exceptions and attempts to recover from some bulb or quote errors. This is best-effort error handling, not a guarantee that the process will recover from every failure.
 
+The thresholds on seconds for refresh, color, and stock are all fully customizable! Feel free to edit the fields to suit your needs. Theoretically, the logic should hold for different APIs, allowing you to use the script to track all sorts of things (the weather, gas prices, box office results, etc.). 
+
 ## Requirements
 
 - Windows 10 or Windows 11 (the scripts may be adaptable to other platforms, but these instructions focus on Windows).
@@ -64,6 +66,7 @@ Threshold boundaries follow the comparisons in the code. Because the conditions 
 - A Finnhub account and API key.
 - Internet access for quote requests.
 - A stable local IP address for the bulb is recommended. If the router changes the bulb's IP address, update the script.
+- Although a spherical light fixture is not needed for the light to work, it is helpful for giving the final product a more crystal ball kinda feel 🔮.
 
 ### Python packages
 
@@ -137,6 +140,8 @@ The bulb must allow local-network control. Use the supported Yeelight app/firmwa
 
 Find the bulb's current IP address in your router's connected-device list or through a network discovery tool. Confirm that the computer and bulb are on the same LAN and that the computer can reach the bulb.
 
+In the event the Yeelight Classic app is no longer available, please use my other project  [Yeelight_Reecovery_Tool](https://github.com/NoahAdamSperling/Yeelight_Recovery_Tool) as an alternate way to connect the bulb to the internet, obtain the bulb IP, and enable and verify LAN control.
+
 ## Configure the script
 
 Before running either script, open it in a text editor and review the configuration values near the top.
@@ -204,7 +209,6 @@ If communication fails, running as Administrator is not a substitute for checkin
 - **The light is a visual indicator, not a trading signal.** It does not place trades or account for fees, volatility, liquidity, or your investment objectives.
 - **Quote availability depends on Finnhub.** Free and paid plans can differ in symbol coverage, update frequency, and endpoint access. An API key can be valid while a particular symbol or quote request is unavailable.
 - **The stock script's comparison logic needs care.** It initializes `previous_closing_price` to `None`, so the first successful quote does not produce a percentage-change color decision. On subsequent loops it assigns the latest quote's `pc` value to the reference variable. Verify that this is the baseline you intend and that it matches the provider's meaning for the symbol.
-- **The crypto script's comments and implementation do not fully match.** Although comments describe a rolling 24-hour comparison and mention Binance, the current function calls `finnhub_client.quote(SYMBOL)` and returns the response's `c` and `pc` fields. The current code does not store the starting price and update it every 86,400 seconds as the comments describe. Therefore, do not assume it is calculating an accurate rolling 24-hour crypto return without modifying and testing the code.
 - **The polling interval is approximately three seconds.** This may be faster than the update frequency of the underlying quote data and could cause unnecessary API requests. Check your provider's limits and adjust the interval as appropriate.
 - **Market hours are simplified.** The stock script uses weekdays and a fixed Eastern-time window; it does not account for market holidays or special sessions.
 - **Recovery is best-effort.** A persistent network problem, invalid API key, unsupported symbol, or unavailable API endpoint may require manual intervention.
