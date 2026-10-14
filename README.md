@@ -66,6 +66,7 @@ The thresholds on seconds for refresh, color, and stock are all fully customizab
 - A Finnhub account and API key.
 - Internet access for quote requests.
 - A stable local IP address for the bulb is recommended. If the router changes the bulb's IP address, update the script.
+
 *Although a spherical light fixture is not needed for the light to work, it is helpful for giving the final product a more crystal ball kinda feel 🔮.*
 
 ### Python packages
